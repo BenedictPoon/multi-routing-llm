@@ -1,0 +1,27 @@
+The files in this folder are meant to be used as a more rigourous test input
+to generate better test results 
+
+test_inputs.txt:
+There are 100 inputs that correlate to 4 of the categories 
+
+technical_keywords
+product_keywords
+support_keywords
+general_keywords
+
+Their original CSVs are also saved in this folder for adjusting
+
+Technical
+- Source: 100 most upvoted questions from stack overflow
+- https://data.stackexchange.com/stackoverflow/query/edit/1898129
+
+Product
+- Source: 100 from Kaggle: Ecommerce-FAQ-Chatbot-Dataset [CSV]
+- https://github.com/imsoumya18/E-commerce_FAQ/blob/main/Ecommerce_FAQs.csv
+
+Support
+- Source: 100 most upvoted questions from Super User (simulate tech-support)
+
+General
+- Source: Generated from Chatgpt
+- IDK how to generate some good natural general queries but for the time being they should work.
