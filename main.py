@@ -13,31 +13,48 @@ def check_environment():
     return True
 
 def check_api_key():
-    """Check if OpenAI API key is set in environment variables"""
+    """Check if OpenAI API key is set in environment variables or config file"""
     api_key = os.environ.get('OPENAI_API_KEY')
     
+    # If not in environment, try to load from config file
     if not api_key:
-        print("OpenAI API key not found in environment variables.")
+        try:
+            config_path = os.path.join(os.path.dirname(__file__), 'config.txt')
+            if os.path.exists(config_path):
+                with open(config_path, 'r') as f:
+                    api_key = f.read().strip()
+                os.environ["OPENAI_API_KEY"] = api_key
+                print("API key loaded from config file.")
+                return True
+        except Exception as e:
+            print(f"Error loading config: {e}")
+    
+    # If still no API key, ask for it
+    if not api_key:
+        print("OpenAI API key not found.")
         print("Please enter your OpenAI API key:")
         entered_key = input().strip()
         
         if entered_key:
             # Set the API key in environment variables
             os.environ["OPENAI_API_KEY"] = entered_key
-            print("API key set in environment variables.")
             
-            # Also reload the router module to reinitialize the client
-            import importlib
-            import router
-            importlib.reload(router)
-            
+            # Save to config file for future use
+            try:
+                config_path = os.path.join(os.path.dirname(__file__), 'config.txt')
+                with open(config_path, 'w') as f:
+                    f.write(entered_key)
+                print("API key saved to config file.")
+            except Exception as e:
+                print(f"Error saving config: {e}")
+                
             return True
         else:
             print("No API key provided.")
             return False
-    else:
-        print("Using OpenAI API key from environment variables.")
-        return True
+    
+    print("Using OpenAI API key from environment.")
+    return True
 
 def run_streamlit():
     """Run the Streamlit application"""

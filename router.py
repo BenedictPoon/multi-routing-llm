@@ -1,6 +1,7 @@
 import os
 from typing import Annotated, Literal, TypedDict, Union
-from openai import OpenAI
+import requests
+import json
 
 from langchain_core.messages import HumanMessage, SystemMessage
 # Import from the classifier
@@ -8,9 +9,6 @@ from huggingface_classifier import classify_input
 
 import langgraph as lg
 from langgraph.graph import END, StateGraph
-
-# Initialize the OpenAI client using the API key from environment variables
-client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
 
 # Define our state
 class State(TypedDict):
@@ -20,6 +18,35 @@ class State(TypedDict):
 
 # Define categories
 CATEGORIES = ["technical_question", "product_inquiry", "customer_support", "general_inquiry", "other"]
+
+# Function to call OpenAI API directly
+def call_openai_api(messages, model="gpt-4o-mini"):
+    api_key = os.environ.get("OPENAI_API_KEY")
+    if not api_key:
+        return "API key not set"
+        
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": f"Bearer {api_key}"
+    }
+    
+    data = {
+        "model": model,
+        "messages": messages,
+        "temperature": 0.7,
+        "max_tokens": 500
+    }
+    
+    try:
+        response = requests.post(
+            "https://api.openai.com/v1/chat/completions",
+            headers=headers,
+            data=json.dumps(data)
+        )
+        response.raise_for_status()
+        return response.json()["choices"][0]["message"]["content"]
+    except Exception as e:
+        return f"Error: {str(e)}"
 
 # Create the classifier node
 def classifier(state: State) -> dict:
@@ -57,106 +84,65 @@ def technical_handler(state: State) -> dict:
     last_message = state["messages"][-1]
     user_input = last_message.content
     
-    try:
-        # Use OpenAI to generate a response
-        response = client.chat.completions.create(
-            model="gpt-4o-mini",
-            store=True,
-            messages=[
-                {"role": "system", "content": "You are a technical support specialist. Provide detailed, accurate and helpful responses to technical questions."},
-                {"role": "user", "content": user_input}
-            ],
-            temperature=0.7,
-            max_tokens=500
-        )
-        return {"response": response.choices[0].message.content}
-    except Exception as e:
-        return {"response": f"Error using OpenAI API: {str(e)}"}
+    # Call OpenAI API directly
+    response = call_openai_api([
+        {"role": "system", "content": "You are a technical support specialist. Provide detailed, accurate and helpful responses to technical questions."},
+        {"role": "user", "content": user_input}
+    ])
+    
+    return {"response": response}
 
 def product_handler(state: State) -> dict:
     """Handle product inquiries"""
     last_message = state["messages"][-1]
     user_input = last_message.content
     
-    try:
-        # Use OpenAI to generate a response
-        response = client.chat.completions.create(
-            model="gpt-4o-mini",
-            store=True,
-            messages=[
-                {"role": "system", "content": "You are a product specialist. Provide informative responses about product features, pricing, and comparisons."},
-                {"role": "user", "content": user_input}
-            ],
-            temperature=0.7,
-            max_tokens=500
-        )
-        return {"response": response.choices[0].message.content}
-    except Exception as e:
-        return {"response": f"Error using OpenAI API: {str(e)}"}
+    # Call OpenAI API directly
+    response = call_openai_api([
+        {"role": "system", "content": "You are a product specialist. Provide informative responses about product features, pricing, and comparisons."},
+        {"role": "user", "content": user_input}
+    ])
+    
+    return {"response": response}
 
 def support_handler(state: State) -> dict:
     """Handle customer support issues"""
     last_message = state["messages"][-1]
     user_input = last_message.content
     
-    try:
-        # Use OpenAI to generate a response
-        response = client.chat.completions.create(
-            model="gpt-4o-mini",
-            store=True,
-            messages=[
-                {"role": "system", "content": "You are a customer support representative. Be empathetic and helpful when addressing customer issues."},
-                {"role": "user", "content": user_input}
-            ],
-            temperature=0.7,
-            max_tokens=500
-        )
-        return {"response": response.choices[0].message.content}
-    except Exception as e:
-        return {"response": f"Error using OpenAI API: {str(e)}"}
+    # Call OpenAI API directly
+    response = call_openai_api([
+        {"role": "system", "content": "You are a customer support representative. Be empathetic and helpful when addressing customer issues."},
+        {"role": "user", "content": user_input}
+    ])
+    
+    return {"response": response}
 
 def general_handler(state: State) -> dict:
     """Handle general inquiries"""
     last_message = state["messages"][-1]
     user_input = last_message.content
     
-    try:
-        # Use OpenAI to generate a response
-        response = client.chat.completions.create(
-            model="gpt-4o-mini",
-            store=True,
-            messages=[
-                {"role": "system", "content": "You are an information specialist. Provide clear and comprehensive information about the company, its services, and general questions."},
-                {"role": "user", "content": user_input}
-            ],
-            temperature=0.7,
-            max_tokens=500
-        )
-        return {"response": response.choices[0].message.content}
-    except Exception as e:
-        return {"response": f"Error using OpenAI API: {str(e)}"}
+    # Call OpenAI API directly
+    response = call_openai_api([
+        {"role": "system", "content": "You are an information specialist. Provide clear and comprehensive information about the company, its services, and general questions."},
+        {"role": "user", "content": user_input}
+    ])
+    
+    return {"response": response}
 
 def other_handler(state: State) -> dict:
     """Handle other types of queries"""
     last_message = state["messages"][-1]
     user_input = last_message.content
     
-    try:
-        # Use OpenAI to generate a response
-        response = client.chat.completions.create(
-            model="gpt-4o-mini",
-            store=True,
-            messages=[
-                {"role": "system", "content": "You are a helpful assistant. Provide friendly and informative responses to a wide range of queries."},
-                {"role": "user", "content": user_input}
-            ],
-            temperature=0.7,
-            max_tokens=500
-        )
-        return {"response": response.choices[0].message.content}
-    except Exception as e:
-        return {"response": f"Error using OpenAI API: {str(e)}"}
-
+    # Call OpenAI API directly
+    response = call_openai_api([
+        {"role": "system", "content": "You are a helpful assistant. Provide friendly and informative responses to a wide range of queries."},
+        {"role": "user", "content": user_input}
+    ])
+    
+    return {"response": response}
 
 # Build the graph
 def build_graph():
