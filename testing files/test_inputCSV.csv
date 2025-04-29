@@ -1,0 +1,401 @@
+﻿ID,Text Input,Category
+1,Why is processing a sorted array faster than processing an unsorted array?,Technical
+2,How do I undo the most recent local commits in Git?,Technical
+3,How do I delete a Git branch locally and remotely?,Technical
+4,What is the difference between 'git pull' and 'git fetch'?,Technical
+5,"What does the yield"" keyword do in Python?""",Technical
+6,How can I remove a specific item from an array in JavaScript?,Technical
+7,How can I rename a local Git branch?,Technical
+8,Which JSON content type do I use?,Technical
+9,How do I undo 'git add' before commit?,Technical
+10,What is the '-->' operator in C/C++?,Technical
+11,"How do I force git pull"" to overwrite local files?""",Technical
+12,Can comments be used in JSON?,Technical
+13,What and where are the stack and heap?,Technical
+14,Why does HTML think chucknorris is a color?,Technical
+15,How to check out a remote Git branch?,Technical
+16,How do I check if an element is hidden in jQuery?,Technical
+17,"What does use strict"" do in JavaScript, and what is the reasoning behind it?""",Technical
+18,"How do I make Git forget about a file that was tracked, but is now in .gitignore?",Technical
+19,"What does if __name__ == __main__"": do?""",Technical
+20,How do I remove local (untracked) files from the current Git working tree?,Technical
+21,Does Python have a ternary conditional operator?,Technical
+22,"Is Java pass-by-reference"" or ""pass-by-value""?""",Technical
+23,How do I redirect to another webpage?,Technical
+24,Find all files containing a specific text (string) on Linux?,Technical
+25,var functionName = function() {} vs function functionName() {},Technical
+26,"How to modify existing, unpushed commit messages?",Technical
+27,How do JavaScript closures work?,Technical
+28,How do I revert a Git repository to a previous commit?,Technical
+29,Why is subtracting these two epoch-milli Times (in year 1927) giving a strange result?,Technical
+30,What is the difference between String and string in C#?,Technical
+31,How do I remove a property from a JavaScript object?,Technical
+32,What are metaclasses in Python?,Technical
+33,How to check whether a string contains a substring in JavaScript?,Technical
+34,How do I check whether a file exists without exceptions?,Technical
+35,How do I merge two dictionaries in a single expression in Python?,Technical
+36,How do I change the URI (URL) for a remote Git repository?,Technical
+37,How do I return the response from an asynchronous call?,Technical
+38,Move the most recent commit(s) to a new branch with Git,Technical
+39,What is the difference between POST and PUT in HTTP?,Technical
+40,"What is the difference between px, dip, dp, and sp?",Technical
+41,How do I discard unstaged changes in Git?,Technical
+42,"What is the difference between let"" and ""var""?""",Technical
+43,How do I include a JavaScript file in another JavaScript file?,Technical
+44,How do I get the directory where a Bash script is located from within the script itself?,Technical
+45,How do I execute a program or call a system command?,Technical
+46,How to disable text selection highlighting,Technical
+47,Reset local repository branch to be just like remote repository HEAD,Technical
+48,How can I reset or revert a file to a specific revision?,Technical
+49,What is the maximum length of a URL in different browsers?,Technical
+50,How do I push a new local branch to a remote Git repository and track it too?,Technical
+51,"How do I create a directory, and any missing parent directories?",Technical
+52,Loop (for each) over an array in JavaScript,Technical
+53,How do I squash my last N commits together?,Technical
+54,How to determine the URL that a local Git repository was originally cloned from,Technical
+55,Which equals operator (== vs ===) should be used in JavaScript comparisons?,Technical
+56,How can I access the index value in a 'for' loop?,Technical
+57,What's the difference between tilde(~) and caret(^) in package.json?,Technical
+58,The definitive guide to form-based website authentication,Technical
+59,How do I replace all occurrences of a string?,Technical
+60,How do I add an empty directory to a Git repository?,Technical
+61,How do I exit Vim?,Technical
+62,How can I validate an email address in JavaScript?,Technical
+63,How do I create a GUID / UUID?,Technical
+64,How do I make a flat list out of a list of lists?,Technical
+65,Regular expression to match a line that doesn't contain a word,Technical
+66,How do I resolve merge conflicts in a Git repository?,Technical
+67,"What is a plain English explanation of Big O"" notation?""",Technical
+68,How do I make the first letter of a string uppercase in JavaScript?,Technical
+69,What is the difference between INNER JOIN and OUTER JOIN?,Technical
+70,How do I check whether a checkbox is checked in jQuery?,Technical
+71,What is the most efficient way to deep clone an object in JavaScript?,Technical
+72,Reference Guide: What does this symbol mean in PHP? (PHP Syntax),Technical
+73,How can I horizontally center an element?,Technical
+74,How can I delete a remote tag?,Technical
+75,"What is the difference between a URI, a URL, and a URN?",Technical
+76,How do I check if an array includes a value in JavaScript?,Technical
+77,Undo a Git merge that hasn't been pushed yet,Technical
+78,How do I get a timestamp in JavaScript?,Technical
+79,How do I clone all remote branches?,Technical
+80,"How to pass Null"" (a real surname!) to a SOAP web service in ActionScript 3""",Technical
+81,How do I update or sync a forked repository on GitHub?,Technical
+82,How do I read / convert an InputStream into a String in Java?,Technical
+83,What is the difference between @staticmethod and @classmethod in Python?,Technical
+84,How do I remove a submodule?,Technical
+85,How slicing in Python works,Technical
+86,"Setting checked"" for a checkbox with jQuery""",Technical
+87,How do I check if a directory exists or not in a Bash shell script?,Technical
+88,Why does Google prepend while(1); to their JSON responses?,Technical
+89,"Thinking in AngularJS"" if I have a jQuery background?""",Technical
+90,How is Docker different from a virtual machine?,Technical
+91,How do I delete a commit from a branch?,Technical
+92,How can I find the index for a given item in a list?,Technical
+93,"Which href"" value should I use for JavaScript links, ""#"" or ""javascript:void(0)""?""",Technical
+94,How do I avoid checking for nulls in Java?,Technical
+95,Undoing a git rebase,Technical
+96,Change an HTML input's placeholder color with CSS,Technical
+97,How to enumerate an enum?,Technical
+98,Iterating over dictionaries using 'for' loops,Technical
+99,How can I close/hide the Android soft keyboard programmatically?,Technical
+100,How do I copy to the clipboard in JavaScript?,Technical
+101,How can I create an account?,Product
+102,What payment methods do you accept?,Product
+103,How can I track my order?,Product
+104,What is your return policy?,Product
+105,Can I cancel my order?,Product
+106,How long does shipping take?,Product
+107,Do you offer international shipping?,Product
+108,What should I do if my package is lost or damaged?,Product
+109,Can I change my shipping address after placing an order?,Product
+110,How can I contact customer support?,Product
+111,Do you offer gift wrapping services?,Product
+112,What is your price matching policy?,Product
+113,Can I order by phone?,Product
+114,Are my personal and payment details secure?,Product
+115,What is your price adjustment policy?,Product
+116,Do you have a loyalty program?,Product
+117,Can I order without creating an account?,Product
+118,Do you offer bulk or wholesale discounts?,Product
+119,Can I change or cancel an item in my order?,Product
+120,How can I leave a product review?,Product
+121,Can I use multiple promo codes on a single order?,Product
+122,What should I do if I receive the wrong item?,Product
+123,Do you offer expedited shipping?,Product
+124,Can I order a product that is out of stock?,Product
+125,What is your email newsletter about?,Product
+126,Can I return a product if I changed my mind?,Product
+127,Do you offer live chat support?,Product
+128,Can I order a product as a gift?,Product
+129,What should I do if my discount code is not working?,Product
+130,Can I return a product if it was a final sale item?,Product
+131,Do you offer installation services for your products?,Product
+132,Can I order a product that is discontinued?,Product
+133,Can I return a product without a receipt?,Product
+134,Can I order a product for delivery to a different country?,Product
+135,Can I add a gift message to my order?,Product
+136,Can I request a product demonstration before making a purchase?,Product
+137,Can I order a product that is listed as 'coming soon'?,Product
+138,Can I request an invoice for my order?,Product
+139,Can I order a product that is labeled as 'limited edition'?,Product
+140,Can I return a product if I no longer have the original packaging?,Product
+141,Can I request a product that is currently out of stock to be reserved for me?,Product
+142,Can I order a product that is listed as 'pre-order' with other in-stock items?,Product
+143,Can I return a product if it was damaged during shipping?,Product
+144,Can I request a product that is out of stock to be restocked?,Product
+145,Can I order a product if it is listed as 'backordered'?,Product
+146,Can I return a product if it was purchased during a sale or with a discount?,Product
+147,Can I request a product repair or replacement if it is damaged?,Product
+148,Can I order a product if it is listed as 'out of stock' but available for pre-order?,Product
+149,Can I return a product if it was purchased as a gift?,Product
+150,Can I request a product if it is listed as 'discontinued'?,Product
+151,Can I order a product if it is listed as 'sold out'?,Product
+152,Can I return a product if it was purchased with a gift card?,Product
+153,Can I request a product if it is not currently available in my size?,Product
+154,Can I order a product if it is listed as 'coming soon' but available for pre-order?,Product
+155,Can I return a product if it was purchased with a discount code?,Product
+156,Can I request a custom order or personalized product?,Product
+157,Can I order a product if it is listed as 'temporarily unavailable'?,Product
+158,Can I return a product if it was damaged due to improper use?,Product
+159,Can I request a product if it is listed as 'coming soon' but not available for pre-order?,Product
+160,Can I order a product if it is listed as 'on hold'?,Product
+161,Can I return a product if I no longer have the original receipt?,Product
+162,Can I request a product that is listed as 'limited edition' to be restocked?,Product
+163,Can I order a product if it is listed as 'discontinued' but still visible on the website?,Product
+164,Can I return a product if it was a clearance or final sale item?,Product
+165,Can I request a product if it is not listed on your website?,Product
+166,Can I order a product if it is listed as 'out of stock' but available for backorder?,Product
+167,Can I return a product if it was purchased as part of a bundle or set?,Product
+168,Can I request a product that is listed as 'out of stock' to be restocked?,Product
+169,Can I order a product if it is listed as 'coming soon' and available for pre-order?,Product
+170,Can I return a product if it was damaged due to mishandling during shipping?,Product
+171,Can I request a product that is listed as 'out of stock' to be reserved for me?,Product
+172,Can I order a product if it is listed as 'pre-order' but available for backorder?,Product
+173,Can I return a product if it was purchased with store credit?,Product
+174,Can I request a product that is currently out of stock to be restocked?,Product
+175,Can I order a product if it is listed as 'sold out' but available for pre-order?,Product
+176,Can I return a product if it was purchased with a promotional gift card?,Product
+177,Can I request a product if it is not currently available in my preferred color?,Product
+178,Can I order a product if it is listed as 'coming soon' and not available for pre-order?,Product
+179,Can I return a product if it was purchased during a promotional event?,Product
+180,What is the size of the product?,Product
+181,When can I get the product?,Product
+182,When is the product on sale?,Product
+183,How do I downgrade from my plan?,Product
+184,What are the features?,Product
+185,Can I get a trial period?,Product
+186,Do you charge me before the end of the tiral?,Product
+187,How much more expensive is the enterprise version,Product
+188,What features comes with premium?,Product
+189,Does my license carry over?,Product
+190,What is the price?,Product
+191,When does the subscription renew?,Product
+192,How do I upgrade my plan?,Product
+193,Can I gift premium?,Product
+194,Can I get premium from referral?,Product
+195,How does premium work?,Product
+196,Can I return a product if it was damaged due to mishandling during shipping?,Product
+197,Can I order a product if it is listed as 'out of stock' but available for pre-order?,Product
+198,How can I compare products?,Product
+199,Can I get a referral offer?,Product
+200,Can I get a refund?,Product
+201,How do I make a POST request using curl?,Support
+202,Why does Windows think that my wireless keyboard is a toaster?,Support
+203,How do I scroll in tmux?,Support
+204,How can I sort the output of 'ls' by last modified date?,Support
+205,"How do I make a machine blank screen"" for a period of time (as a penalty) if certain noise levels are reached?""",Support
+206,Getting curl to output HTTP status code?,Support
+207,Find out which process is locking a file or folder in Windows,Support
+208,How to tell git which private key to use?,Support
+209,How to clear/flush the DNS cache in Google Chrome?,Support
+210,What are the Windows A: and B: drives used for?,Support
+211,Transatlantic ping faster than sending a pixel to the screen?,Support
+212,What does 'source' do?,Support
+213,How can I display the contents of an environment variable from the command prompt in Windows 7?,Support
+214,Is there a built-in checksum utility on Windows 7?,Support
+215,How to recursively chmod all directories except files?,Support
+216,Why does macOS keep asking for my SSH passphrase ever since I updated to macOS Sierra (10.12)?,Support
+217,View list of files in ZIP archive on Linux,Support
+218,Why does this PNG image display differently in Chrome & Firefox than in Safari and IE?,Support
+219,How to copy with cp to include hidden files and hidden directories and their contents?,Support
+220,"How do I convert a video to GIF using ffmpeg, with reasonable quality?",Support
+221,How are pseudorandom and truly random numbers different and why does it matter?,Support
+222,How to stop an automatic redirect from â€œhttp://â€ to â€œhttps://â€ in Chrome,Support
+223,Permissions on private key in .ssh folder?,Support
+224,How to *disable* automatic reboots in Windows 10?,Support
+225,How do I reorder tmux windows?,Support
+226,How to execute a command whenever a file changes?,Support
+227,How to find a directory on linux?,Support
+228,How can I get the same SSID for multiple access points?,Support
+229,"When reading a file with `less` or `more`, how can I get the content in colors?",Support
+230,Using ffmpeg to cut up video,Support
+231,"From a quality perspective, what is better: turning volume up in the software, in the OS, or on the speakers?",Support
+232,Automatically answer 'Yes' when using apt-get install,Support
+233,How do you reload your .vimrc file without restarting vim?,Support
+234,Can I make cURL fail with an exitCode different than 0 if the HTTP status code is not 200?,Support
+235,"directory junction"" vs ""directory symbolic link""?""",Support
+236,"What is the You have new mail"" message in Linux/UNIX?""",Support
+237,Reload a Linux user's group assignments without logging out,Support
+238,How do I run multiple commands on one line in PowerShell?,Support
+239,How to turn off word wrap in less?,Support
+240,Difference between .bashrc and .bash_profile,Support
+241,How do I make rm not give an error if a file doesn't exist?,Support
+242,Windows 7 SP1 Windows Update stuck checking for updates,Support
+243,Remove audio from video file with FFmpeg,Support
+244,How to decompress a .bz2 file,Support
+245,How to remove systemd services,Support
+246,How to enable execution of PowerShell scripts?,Support
+247,How to fix warning about ECDSA host key,Support
+248,How to clear the contents of a file from the command line?,Support
+249,Create/rename a file/folder that begins with a dot in Windows?,Support
+250,Can I delete the folder C:\ProgramData\Package Cache\?,Support
+251,How to check if a binary is 32- or 64-bit on Windows?,Support
+252,What is the home directory on Windows Subsystem for Linux?,Support
+253,Is there any 'sudo' command for Windows?,Support
+254,Test if a port on a remote system is reachable (without telnet),Support
+255,How does a computer restart itself?,Support
+256,Did I just get hacked?,Support
+257,What is the difference between executing a Bash script vs sourcing it?,Support
+258,How do I exit telnet?,Support
+259,How do I rename a session in tmux?,Support
+260,How can I make Chrome stop caching redirects?,Support
+261,How to open files in vertically/horizontal split windows in Vim from the command line,Support
+262,"Mac OS X equivalent of the Ubuntu tree"" command""",Support
+263,Windows SSH: Permissions for 'private-key' are too open,Support
+264,How do I compare binary files in Linux?,Support
+265,How to download files from command line in Windows like wget or curl,Support
+266,What is randomart produced by ssh-keygen?,Support
+267,How can I download an entire website?,Support
+268,Does e-mail address obfuscation actually work?,Support
+269,An SSH tunnel via multiple hops,Support
+270,How can I free up drive space from the Windows installer folder without killing Windows?,Support
+271,How to prevent Gnome-shell's Alt+Tab from grouping windows from similar apps?,Support
+272,"How can I remove malicious spyware, malware, adware, viruses, trojans or rootkits from my PC?",Support
+273,How do I add text to the beginning of a file in Bash?,Support
+274,How to rename the User folder in Windows 10?,Support
+275,How to remove one or all auto-complete text entries in Chrome?,Support
+276,How can I resume a stopped job in Linux?,Support
+277,How do I exit an SSH connection?,Support
+278,How to merge audio and video file in ffmpeg,Support
+279,How to get the summarized sizes of directories and their subdirectories?,Support
+280,How to save a remote server SSL certificate locally as a file,Support
+281,Rebooting Ubuntu on Windows without rebooting Windows?,Support
+282,Why don't websites immediately display their text these days?,Support
+283,Selecting columns in Visual Studio Code,Support
+284,"Is there a way to auto login"" in PuTTY with a password?""",Support
+285,How to encode base64 via command line in macOS/OS X?,Support
+286,Switching back to last *used* tab on Chrome,Support
+287,How can I delete a symbolic link in Windows?,Support
+288,Clear cache for specific domain name in chrome,Support
+289,How to delete directories with path/names too long for normal delete,Support
+290,Restore tmux session after reboot,Support
+291,What is the Windows equivalent of the Unix command cat?,Support
+292,How can I view two files side by side in Notepad++?,Support
+293,How to check which apache modules are enabled/installed?,Support
+294,"What are PATH and other environment variables, and how can I set or use them?",Support
+295,How can I make chown work recursively?,Support
+296,How to remove an entry from Chrome's Remembered URLs from the url bar?,Support
+297,"How do I detach a process from Terminal, entirely?",Support
+298,"In Mac OS, what is the keyboard shortcut to switch between windows of the same application?",Support
+299,How can I search the bash history and rerun a command?,Support
+300,How does one swap two panes in Tmux?,Support
+301,What is the history of XYZ Corp?,General
+302,Where is XYZ Corp located?,General
+303,Who founded XYZ Corp?,General
+304,What is the mission of XYZ Corp?,General
+305,Can you tell me about the XYZ Corp team?,General
+306,What are the values of XYZ Corp?,General
+307,When was XYZ Corp founded?,General
+308,How can I contact XYZ Corp?,General
+309,What are the main products of XYZ Corp?,General
+310,What makes XYZ Corp unique?,General
+311,What is the headquarters of XYZ Corp?,General
+312,What is the vision of XYZ Corp?,General
+313,What services does XYZ Corp offer?,General
+314,How do I reach out to XYZ Corp customer support?,General
+315,Does XYZ Corp have a sustainability initiative?,General
+316,Can you tell me more about XYZ Corp's leadership team?,General
+317,What are XYZ Corp's core business areas?,General
+318,What is the growth trajectory of XYZ Corp?,General
+319,Does XYZ Corp have any partnerships?,General
+320,What is the customer base of XYZ Corp?,General
+321,Where can I find XYZ Corp products?,General
+322,What sets XYZ Corp apart from its competitors?,General
+323,Is XYZ Corp publicly traded?,General
+324,How has XYZ Corp evolved over time?,General
+325,Who are the key stakeholders in XYZ Corp?,General
+326,What are the key milestones in XYZ Corp's history?,General
+327,How does XYZ Corp give back to the community?,General
+328,What is the current leadership structure of XYZ Corp?,General
+329,Can I invest in XYZ Corp?,General
+330,Does XYZ Corp have an annual report?,General
+331,How do I find out about job openings at XYZ Corp?,General
+332,What is the workplace culture like at XYZ Corp?,General
+333,How large is the workforce at XYZ Corp?,General
+334,Where can I learn more about XYZ Corp's future plans?,General
+335,Does XYZ Corp have any international offices?,General
+336,How can I get involved with XYZ Corp's mission?,General
+337,What is XYZ Corp's corporate social responsibility (CSR) strategy?,General
+338,Can I visit XYZ Corp's headquarters?,General
+339,What awards has XYZ Corp received?,General
+340,What is the CEO of XYZ Corp known for?,General
+341,How does XYZ Corp contribute to innovation in its field?,General
+342,Is there a blog for XYZ Corp?,General
+343,How can I subscribe to XYZ Corp's newsletter?,General
+344,What events does XYZ Corp participate in?,General
+345,How can I learn about new product launches from XYZ Corp?,General
+346,What is XYZ Corp's impact on the industry?,General
+347,What collaborations does XYZ Corp have?,General
+348,How does XYZ Corp support its employees?,General
+349,What are the benefits of working at XYZ Corp?,General
+350,How has XYZ Corp responded to market trends?,General
+351,What is XYZ Corp's stance on customer privacy?,General
+352,How does XYZ Corp ensure quality control?,General
+353,Does XYZ Corp have a mobile app?,General
+354,What are the latest products from XYZ Corp?,General
+355,What has been XYZ Corp's most successful year?,General
+356,Does XYZ Corp have a loyalty program?,General
+357,What kind of partnerships does XYZ Corp have?,General
+358,What are the future goals of XYZ Corp?,General
+359,How does XYZ Corp make decisions about new markets?,General
+360,What philanthropic efforts is XYZ Corp involved with?,General
+361,How does XYZ Corp deal with customer feedback?,General
+362,What security measures does XYZ Corp take for its customers?,General
+363,How does XYZ Corp ensure its products are sustainable?,General
+364,What industries does XYZ Corp serve?,General
+365,How can I get involved with XYZ Corp as a partner?,General
+366,What kinds of corporate events does XYZ Corp host?,General
+367,How does XYZ Corp manage its supply chain?,General
+368,Does XYZ Corp have any customer satisfaction initiatives?,General
+369,How does XYZ Corp stay ahead of market changes?,General
+370,What does XYZ Corp look for in its employees?,General
+371,How does XYZ Corp approach diversity and inclusion?,General
+372,Does XYZ Corp offer internships or graduate programs?,General
+373,How can I get updates on XYZ Corp's new products?,General
+374,What are XYZ Corp's main revenue streams?,General
+375,How does XYZ Corp engage with its global audience?,General
+376,What is the growth strategy of XYZ Corp?,General
+377,How does XYZ Corp maintain customer loyalty?,General
+378,Where can I find customer reviews of XYZ Corp products?,General
+379,What are the top benefits of using XYZ Corp's products?,General
+380,What is the best way to contact XYZ Corp for inquiries?,General
+381,What kind of support does XYZ Corp provide?,General
+382,What are the terms of service for XYZ Corp?,General
+383,How does XYZ Corp prioritize its business operations?,General
+384,What are XYZ Corp's future innovations in the market?,General
+385,What are some facts about XYZ Corp that customers may not know?,General
+386,How is XYZ Corp involved in social responsibility?,General
+387,Does XYZ Corp have a return policy?,General
+388,What are the career opportunities at XYZ Corp?,General
+389,How can I join XYZ Corp's affiliate program?,General
+390,What makes XYZ Corp's customer service stand out?,General
+391,How does XYZ Corp use technology in its operations?,General
+392,Does XYZ Corp offer any training programs for employees?,General
+393,How does XYZ Corp manage corporate communication?,General
+394,Does XYZ Corp have any customer referral programs?,General
+395,What new markets is XYZ Corp exploring?,General
+396,How does XYZ Corp enhance user experience?,General
+397,How can I be a part of XYZ Corp's innovation process?,General
+398,What are XYZ Corp's contributions to the local community?,General
+399,How does XYZ Corp improve its products over time?,General
+400,What are the environmental policies of XYZ Corp?,General
