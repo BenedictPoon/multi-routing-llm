@@ -1,0 +1,6 @@
+transformers
+datasets
+torch
+tensorboard
+scikit-learn
+accelerate>=0.26.0
