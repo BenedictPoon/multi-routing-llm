@@ -1,2 +1,12 @@
 config.txt
 
+__pycache__/
+*.py[cod]
+
+#venv, outputs
+pii_detection_project/venv/
+pii_detection_project/.acp/
+pii_detection_project/outputs/
+pii_detection_project/checkpoints/
+
+.DS_Store
