@@ -15,6 +15,7 @@ class State(TypedDict):
     messages: list
     category: str
     response: str
+    use_ollama: bool
 
 # Define categories
 CATEGORIES = ["technical_question", "product_inquiry", "customer_support", "general_inquiry", "other"]
@@ -80,69 +81,102 @@ def router(state: State) -> str:
 # Define handlers for each category
 def technical_handler(state: State) -> dict:
     """Handle technical questions"""
-    # Get the last user message
     last_message = state["messages"][-1]
     user_input = last_message.content
-    
-    # Call OpenAI API directly
-    response = call_openai_api([
-        {"role": "system", "content": "You are a technical support specialist. Provide detailed, accurate and helpful responses to technical questions."},
+    system_prompt = "You are a technical support specialist. Provide detailed, accurate and helpful responses to technical questions."
+    messages = [
+        {"role": "system", "content": system_prompt},
         {"role": "user", "content": user_input}
-    ])
-    
+    ]
+    if state.get("use_ollama", False):
+        response = call_ollama_api(messages, model=OLLAMA_MODEL)
+    else:
+        response = call_openai_api(messages)
     return {"response": response}
 
 def product_handler(state: State) -> dict:
     """Handle product inquiries"""
     last_message = state["messages"][-1]
     user_input = last_message.content
-    
-    # Call OpenAI API directly
-    response = call_openai_api([
-        {"role": "system", "content": "You are a product specialist. Provide informative responses about product features, pricing, and comparisons."},
+    system_prompt = "You are a product specialist. Provide informative responses about product features, pricing, and comparisons."
+    messages = [
+        {"role": "system", "content": system_prompt},
         {"role": "user", "content": user_input}
-    ])
-    
+    ]
+    if state.get("use_ollama", False):
+        response = call_ollama_api(messages, model=OLLAMA_MODEL)
+    else:
+        response = call_openai_api(messages)
     return {"response": response}
 
 def support_handler(state: State) -> dict:
     """Handle customer support issues"""
     last_message = state["messages"][-1]
     user_input = last_message.content
-    
-    # Call OpenAI API directly
-    response = call_openai_api([
-        {"role": "system", "content": "You are a customer support representative. Be empathetic and helpful when addressing customer issues."},
+    system_prompt = "You are a customer support representative. Be empathetic and helpful when addressing customer issues."
+    messages = [
+        {"role": "system", "content": system_prompt},
         {"role": "user", "content": user_input}
-    ])
-    
+    ]
+    if state.get("use_ollama", False):
+        response = call_ollama_api(messages, model=OLLAMA_MODEL)
+    else:
+        response = call_openai_api(messages)
     return {"response": response}
 
 def general_handler(state: State) -> dict:
     """Handle general inquiries"""
     last_message = state["messages"][-1]
     user_input = last_message.content
-    
-    # Call OpenAI API directly
-    response = call_openai_api([
-        {"role": "system", "content": "You are an information specialist. Provide clear and comprehensive information about the company, its services, and general questions."},
+    system_prompt = "You are an information specialist. Provide clear and comprehensive information about the company, its services, and general questions."
+    messages = [
+        {"role": "system", "content": system_prompt},
         {"role": "user", "content": user_input}
-    ])
-    
+    ]
+    if state.get("use_ollama", False):
+        response = call_ollama_api(messages, model=OLLAMA_MODEL)
+    else:
+        response = call_openai_api(messages)
     return {"response": response}
 
 def other_handler(state: State) -> dict:
     """Handle other types of queries"""
     last_message = state["messages"][-1]
     user_input = last_message.content
-    
-    # Call OpenAI API directly
-    response = call_openai_api([
-        {"role": "system", "content": "You are a helpful assistant. Provide friendly and informative responses to a wide range of queries."},
+    system_prompt = "You are a helpful assistant. Provide friendly and informative responses to a wide range of queries."
+    messages = [
+        {"role": "system", "content": system_prompt},
         {"role": "user", "content": user_input}
-    ])
-    
+    ]
+    if state.get("use_ollama", False):
+        response = call_ollama_api(messages, model=OLLAMA_MODEL)
+    else:
+        response = call_openai_api(messages)
     return {"response": response}
+
+def call_ollama_api(messages, model="llama3"):
+    """
+    Call the local Ollama server for inference.
+    messages: list of dicts with 'role' and 'content'
+    model: the Ollama model to use (e.g., 'llama3', 'mistral', etc.)
+    """
+    try:
+        # Ollama expects a single prompt string, so concatenate messages
+        prompt = "\n".join([f"{m['role']}: {m['content']}" for m in messages])
+        data = {
+            "model": model,
+            "prompt": prompt,
+            "stream": False
+        }
+        response = requests.post(
+            "http://localhost:11434/api/generate",
+            headers={"Content-Type": "application/json"},
+            data=json.dumps(data)
+        )
+        response.raise_for_status()
+        return response.json()["response"]
+    except Exception as e:
+        return f"Ollama error: {str(e)}"
 
 # Build the graph
 def build_graph():
@@ -185,13 +219,14 @@ def build_graph():
 graph = build_graph()
 
 # Function to process a query through the graph
-def process_query(query):
+def process_query(query, use_ollama=False):
     """Process a user query through the graph"""
     # Initialize state
     state = {
         "messages": [HumanMessage(content=query)],
         "category": "",
-        "response": ""
+        "response": "",
+        "use_ollama": use_ollama
     }
     
     # Execute the graph
@@ -226,3 +261,6 @@ if __name__ == "__main__":
         print(f"Category: {result['category']}")
         print(f"Response: {result['response']}")
         print("-" * 70)
+
+USE_OLLAMA = os.environ.get("USE_OLLAMA", "false").lower() == "true"
+OLLAMA_MODEL = os.environ.get("OLLAMA_MODEL", "llama3")

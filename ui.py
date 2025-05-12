@@ -7,7 +7,11 @@ st.set_page_config(
     layout="wide"
 )
 
-# Add styling
+# Initialize chat history in session state if it doesn't exist
+if "chat_history" not in st.session_state:
+    st.session_state.chat_history = []
+
+# Update CSS to make headings and text white
 st.markdown("""
 <style>
     .main {
@@ -17,7 +21,7 @@ st.markdown("""
         font-size: 2.5rem;
         font-weight: 700;
         margin-bottom: 1.5rem;
-        color: #333333;
+        color: white !important;
     }
     .response-box {
         background-color: #f0f2f6;
@@ -34,78 +38,104 @@ st.markdown("""
         margin-right: 10px;
     }
     p, div, span, h1, h2, h3, h4, h5, h6 {
-        color: #333333 !important;
+        color: white !important;
     }
     .stMarkdown, .stText {
-        color: #333333 !important;
+        color: white !important;
     }
 </style>
 """, unsafe_allow_html=True)
 
-# App header
+# Display chat history at the top
+if st.session_state.chat_history:
+    st.subheader("Conversation History")
+    
+    # Create a scrollable container for the chat history
+    chat_container = st.container()
+    with chat_container:
+        for i, interaction in enumerate(st.session_state.chat_history):
+            # Display user query in a chat bubble
+            st.markdown(f"""
+            <div style="background-color: #2c3e50; border-radius: 10px; padding: 10px; margin: 5px 0; text-align: right;">
+                <p style="margin: 0; color: white;"><strong>You:</strong> {interaction["query"]}</p>
+            </div>
+            """, unsafe_allow_html=True)
+            
+            # Display the category
+            category = interaction["category"]
+            category_colors = {
+                "technical_question": "#1E88E5",  # Blue
+                "product_inquiry": "#43A047",     # Green
+                "customer_support": "#E53935",    # Red
+                "general_inquiry": "#FB8C00",     # Orange
+                "other": "#8E24AA"                # Purple
+            }
+            color = category_colors.get(category, "#757575")  # Default to gray
+            
+            # Display assistant response with category tag
+            st.markdown(f"""
+            <div style="background-color: #34495e; border-radius: 10px; padding: 10px; margin: 5px 0;">
+                <span style="background-color: {color}; color: white; padding: 3px 8px; border-radius: 10px; font-size: 0.7rem; margin-bottom: 5px; display: inline-block;">
+                    {category.replace('_', ' ').title()}
+                </span>
+                <p style="margin: 5px 0 0 0; color: white;"><strong>Assistant:</strong> {interaction["response"]}</p>
+                <p style="margin: 5px 0 0 0; color: white; font-size: 0.8rem; text-align: right;">Model: {interaction.get('model', 'Unknown')}</p>
+            </div>
+            """, unsafe_allow_html=True)
+            
+            # Add a divider if it's not the last item
+            if i < len(st.session_state.chat_history) - 1:
+                st.markdown("<hr style='margin: 15px 0; opacity: 0.3;'>", unsafe_allow_html=True)
+        
+        # Auto-scroll to the bottom
+        st.markdown("<script>window.scrollTo(0, document.body.scrollHeight);</script>", unsafe_allow_html=True)
+
+# Header at the bottom
 st.markdown("<h1 class='title'>MultiLLM Query Router</h1>", unsafe_allow_html=True)
+
+# Description text just above the prompt
 st.markdown("""
 This application classifies and routes your query to the appropriate handler based on the content.
 Simply enter your question or request below and our AI will provide a relevant response.
 """)
 
-# User input
+# User input and model selection at the bottom
+st.markdown("<h2>Ask a Question</h2>", unsafe_allow_html=True)
 query = st.text_area("Enter your question or request:", height=100)
-submit_button = st.button("Submit")
 
-# Initialize chat history in session state if it doesn't exist
-if "chat_history" not in st.session_state:
-    st.session_state.chat_history = []
+# Model selection as a segmented button
+model_choice = st.radio("Choose Model", ["Auto", "Cloud", "Local"], horizontal=True)
+
+# Determine which model to use based on selection
+if model_choice == "Cloud":
+    st.session_state["use_ollama"] = False
+    st.session_state["model_choice"] = "cloud"
+elif model_choice == "Local":
+    st.session_state["use_ollama"] = True
+    st.session_state["model_choice"] = "local"
+elif model_choice == "Auto":
+    st.session_state["model_choice"] = "auto"
+
+# Submit button
+submit_button = st.button("Submit")
 
 # Process the query
 if submit_button and query:
     with st.spinner("Processing your query..."):
         # Call the process_query function from router.py
-        result = process_query(query)
+        result = process_query(query, use_ollama=st.session_state.get("use_ollama", False))
         
         # Add to chat history
         st.session_state.chat_history.append({
             "query": query,
             "category": result["category"],
-            "response": result["response"]
+            "response": result["response"],
+            "model": "Local" if st.session_state.get("use_ollama", False) else "Cloud"
         })
-
-# Display chat history
-if st.session_state.chat_history:
-    st.subheader("Conversation History")
-    
-    for i, interaction in enumerate(st.session_state.chat_history):
-        # Display user query in a chat bubble
-        st.markdown(f"""
-        <div style="background-color: #E8F4F8; border-radius: 10px; padding: 10px; margin: 5px 0; text-align: right;">
-            <p style="margin: 0; color: #333333;"><strong>You:</strong> {interaction["query"]}</p>
-        </div>
-        """, unsafe_allow_html=True)
         
-        # Display the category
-        category = interaction["category"]
-        category_colors = {
-            "technical_question": "#1E88E5",  # Blue
-            "product_inquiry": "#43A047",     # Green
-            "customer_support": "#E53935",    # Red
-            "general_inquiry": "#FB8C00",     # Orange
-            "other": "#8E24AA"                # Purple
-        }
-        color = category_colors.get(category, "#757575")  # Default to gray
-        
-        # Display assistant response with category tag
-        st.markdown(f"""
-        <div style="background-color: #F8F8F8; border-radius: 10px; padding: 10px; margin: 5px 0;">
-            <span style="background-color: {color}; color: white; padding: 3px 8px; border-radius: 10px; font-size: 0.7rem; margin-bottom: 5px; display: inline-block;">
-                {category.replace('_', ' ').title()}
-            </span>
-            <p style="margin: 5px 0 0 0; color: #333333;"><strong>Assistant:</strong> {interaction["response"]}</p>
-        </div>
-        """, unsafe_allow_html=True)
-        
-        # Add a divider if it's not the last item
-        if i < len(st.session_state.chat_history) - 1:
-            st.markdown("<hr style='margin: 15px 0; opacity: 0.3;'>", unsafe_allow_html=True)
+        # Clear the prompt window
+        query = ""
+        st.rerun()  # Rerun the app to update the UI
 
 # Add sidebar with information
 with st.sidebar:
@@ -118,17 +148,14 @@ with st.sidebar:
     
     It classifies queries into these categories:
     - Technical Questions
-    - Product Inquiries
-    - Customer Support
     - General Inquiries
-    - Other
     """)
     
     # Add debug tools in sidebar
     st.subheader("Debug Tools")
     if st.button("Clear Conversation"):
         st.session_state.chat_history = []
-        st.experimental_rerun()
+        st.rerun()
     
     # Show routing statistics if there's history
     if st.session_state.chat_history:
