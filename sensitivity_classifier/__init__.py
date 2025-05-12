@@ -1,1 +1,2 @@
-from .masking import mask_text, load_masker
+from .masking import mask_text        # re-export
+__all__ = ["mask_text"]
