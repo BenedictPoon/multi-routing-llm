@@ -170,13 +170,109 @@ If you continue to experience issues, check the following resources:
 - LangChain documentation: https://python.langchain.com/docs/
 - OpenAI API documentation: https://platform.openai.com/docs/
 
-## Next Steps
 
-Now that you have the MultiLLM Query Router up and running, you might want to:
+# Masking Pipeline for PII Detection and Routing
 
-1. Implement the `router.py` file to fully utilize the system
-2. Create specialized handlers for each query category
-3. Fine-tune the classification system for your specific use case
-4. Expand the UI with additional features
+This module provides a pipeline for fine-tuning a DistilBERT model to detect and mask PII (Personally Identifiable Information) in text, and for routing queries based on detected sensitivity.
 
-Happy routing!
+---
+
+## Project Structure
+
+```
+multi-routing-llm/
+│
+├── train.py
+├── test_masking.py
+└── sensitivity_classifier/
+    ├── masking.py
+    ├── mask_router.py
+    ├── model/           # Saved model and tokenizer after training
+    └── labels.json      # Label mapping used for masking
+```
+
+---
+
+## Training
+
+To train the model on the PII dataset:
+
+```bash
+python train.py
+```
+
+- Loads and preprocesses the dataset.
+- Fine-tunes DistilBERT for token classification.
+- Saves the trained model and label mappings to `sensitivity_classifier/model/` and `sensitivity_classifier/labels.json`.
+- Make sure to adjust the hyperparameters for your machine, its currently set to CUDA (Nvidia), will not work on mac 
+
+---
+
+## Masking and Routing Usage
+
+### Masking PII in Text
+
+```python
+from sensitivity_classifier import mask_text
+
+text = "My name is John and my phone number is 0412 345 678."
+masked = mask_text(text)
+print(masked)
+# Output: "My name is [FIRSTNAME] and my phone number is [PHONENUMBER]."
+```
+
+### Routing Based on PII Detection
+
+```python
+from sensitivity_classifier.mask_router import handle_user_query
+
+result = handle_user_query("My name is John.", auto_choice="cloud")
+print(result["routed_to"])    # "cloud"
+print(result["final_text"])   # Masked or unmasked text
+```
+
+---
+
+## Customizing Sensitive Labels
+
+You can specify which entity types are considered sensitive and should be masked:
+
+```python
+labels = ["B-PHONENUMBER", "I-PHONENUMBER"]
+result = handle_user_query(
+    "My name is John and my phone number is 0412 345 678.",
+    auto_choice="cloud",
+    sensitive_labels=labels
+)
+print(result["final_text"])
+# Output: "My name is John and my phone number is [PHONENUMBER]."
+```
+
+TRY ADD THIS: For UI integration, present `list(model.config.id2label.values())` as a checklist for user selection.
+
+---
+
+## Testing
+
+A simple test is provided in `test_masking.py`:
+
+```python
+from sensitivity_classifier import mask_text
+
+def test_basic():
+    text = "My name is John and I live in New South Wales."
+    out = mask_text(text)
+    assert "[FIRSTNAME]" in out
+```
+
+---
+
+## Requirements
+
+- Python 3.8+
+- transformers
+- datasets
+- seqeval
+- torch
+
+---

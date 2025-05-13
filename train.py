@@ -114,6 +114,25 @@ def main():
 
 
     # 4 ─────────────────────────────────────────────────────── training
+    # To run on a Mac (Apple Silicon) or CPU instead of CUDA GPU:
+    # - For Mac M1/M2: Uncomment 'bf16=True' and 'use_mps_device=True', and comment out 'fp16=True'.
+    # - For CPU only: Remove or comment out 'fp16=True', 'bf16=True', and 'use_mps_device=True'.
+    # Example for Mac:
+    #     args = TrainingArguments(
+    #         ...,
+    #         # fp16=True,
+    #         bf16=True,
+    #         use_mps_device=True,
+    #         ...
+    #     )
+    # Example for CPU:
+    #     args = TrainingArguments(
+    #         ...,
+    #         # fp16=True,
+    #         # bf16=True,
+    #         # use_mps_device=True,
+    #         ...
+    #     )
     model = AutoModelForTokenClassification.from_pretrained(
         MODEL_NAME, num_labels=len(label2id),
         id2label=id2label, label2id=label2id)
