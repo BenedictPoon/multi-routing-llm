@@ -1,5 +1,5 @@
 import json, pathlib
-from typing import Optional, List
+from typing import Optional, List, Tuple
 from transformers import (AutoTokenizer, AutoModelForTokenClassification,
                           pipeline)
 
@@ -78,3 +78,27 @@ def mask_text(text: str, device: Optional[str] = None, sensitive_labels: list = 
         # Only keep spans whose entity_group (label) is in sensitive_labels
         spans = [sp for sp in spans if sp["entity_group"] in sensitive_labels]
     return _replace(text, spans)
+
+def check_sensitivity(text:str, device:Optional[str]=None) -> Tuple[bool, str]:
+    """
+    Check if text contains sensitive information and return masked version.
+    
+    Args:
+        text (str): The text to check
+        device (Optional[str]): Device to run the model on (e.g., 'cuda', 'cpu')
+        
+    Returns:
+        Tuple[bool, str]: A tuple containing:
+            - bool: True if sensitive information was found and masked
+            - str: The masked text if sensitive info was found, original text otherwise
+    """
+    nlp = load_masker(device)
+    spans = nlp(text)
+    
+    # If no spans were found, no sensitive information
+    if not spans:
+        return False, text
+        
+    # If spans were found, text contains sensitive information
+    masked_text = _replace(text, spans)
+    return True, masked_text

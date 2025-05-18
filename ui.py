@@ -65,10 +65,7 @@ if st.session_state.chat_history:
             category = interaction["category"]
             category_colors = {
                 "technical_question": "#1E88E5",  # Blue
-                "product_inquiry": "#43A047",     # Green
-                "customer_support": "#E53935",    # Red
                 "general_inquiry": "#FB8C00",     # Orange
-                "other": "#8E24AA"                # Purple
             }
             color = category_colors.get(category, "#757575")  # Default to gray
             
@@ -79,7 +76,6 @@ if st.session_state.chat_history:
                     {category.replace('_', ' ').title()}
                 </span>
                 <p style="margin: 5px 0 0 0; color: white;"><strong>Assistant:</strong> {interaction["response"]}</p>
-                <p style="margin: 5px 0 0 0; color: white; font-size: 0.8rem; text-align: right;">Model: {interaction.get('model', 'Unknown')}</p>
             </div>
             """, unsafe_allow_html=True)
             
@@ -99,7 +95,7 @@ This application classifies and routes your query to the appropriate handler bas
 Simply enter your question or request below and our AI will provide a relevant response.
 """)
 
-# User input and model selection at the bottom
+# User input at the bottom
 st.markdown("<h2>Ask a Question</h2>", unsafe_allow_html=True)
 query = st.text_area("Enter your question or request:", height=100)
 
@@ -122,15 +118,22 @@ submit_button = st.button("Submit")
 # Process the query
 if submit_button and query:
     with st.spinner("Processing your query..."):
+        # Determine which model to use based on selection
+        if model_choice == "Cloud":
+            use_ollama = False
+        elif model_choice == "Local":
+            use_ollama = True
+        else:  # Auto
+            use_ollama = None  # Let the router decide based on sensitivity
+            
         # Call the process_query function from router.py
-        result = process_query(query, use_ollama=st.session_state.get("use_ollama", False))
+        result = process_query(query, use_ollama=use_ollama)
         
         # Add to chat history
         st.session_state.chat_history.append({
             "query": query,
             "category": result["category"],
-            "response": result["response"],
-            "model": "Local" if st.session_state.get("use_ollama", False) else "Cloud"
+            "response": result["response"]
         })
         
         # Clear the prompt window
@@ -147,8 +150,8 @@ with st.sidebar:
     - **Streamlit** for building the user interface
     
     It classifies queries into these categories:
-    - Technical Questions
-    - General Inquiries
+    - Technical Questions: For technical support and implementation queries
+    - General Inquiries: For all other questions and information requests
     """)
     
     # Add debug tools in sidebar

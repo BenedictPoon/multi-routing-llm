@@ -144,9 +144,8 @@ def main():
         eval_strategy="steps",
         eval_steps=1000,
         save_steps=1000,
-        fp16=True,                         # Cuda-GPU
         # bf16=True,                          # Apple-GPU
-        # use_mps_device=True,                # M-series macs
+        use_mps_device=True,                # M-series macs
         save_strategy="steps",
         logging_strategy="steps",
         logging_steps=100,
